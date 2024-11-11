@@ -4,7 +4,7 @@ export { }
 
 chrome.runtime.onInstalled.addListener(function () {
     chrome.contextMenus.create({
-        title: 'Fact "%s"',
+        title: 'Check statement "%s"',
         contexts: ["selection"],
         id: "factCheck"
     })

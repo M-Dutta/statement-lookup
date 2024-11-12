@@ -3,10 +3,13 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [ push ]
 
 jobs:
+
   build-extension:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/setup-node@v4
+      - name: Setup node globally
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
 
@@ -23,8 +26,8 @@ jobs:
         run: yarn build
 
       - name: Archive artifact
+        if: github.ref == 'refs/heads/main'
         uses: actions/upload-artifact@v4
         with:
-          if: github.ref == 'refs/heads/main'
           name: chrome-mv3-prod
           path: build/chrome-mv3-prod

@@ -68,3 +68,7 @@ jobs:
           tag_name: ${{ env.CURRENT_TAG }}
           files: build/${{ env.FINAL_DIST_NAME }}-${{ env.CURRENT_TAG }}.zip
           prerelease: true
+          body: |
+            [Installation instructions](https://github.com/M-Dutta/statement-verifier/blob/main/README.md#loading-the-extension)
+            
+            **Changelog**: https://github.com/M-Dutta/statement-verifier/commits/${{ env.CURRENT_TAG }}

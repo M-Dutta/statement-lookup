@@ -54,13 +54,10 @@ This is a production bundle the extension, ready to be zipped and published to t
 1. Download the `statement-verifier-chrome-mv3-<version>.zip` file.
 2. Unpack the `.zip` file.
 3. Open `Chrome` and navigate to `chrome://extensions/`
-4. Click `Load unpacked` button
-
-![ext-load](readme_assets/chrome-extension-loading.png)
-
+4. Click `Load unpacked` button.
+    <img src="readme_assets/chrome-extension-loading.png" width="70%"/>
 5. Navigate to and select the unpacked folder.
-
-![alt text](readme_assets/selecting-folder.png)
+    <img src="readme_assets/selecting-folder.png" width="60%"/>
 
 ## Credits
 

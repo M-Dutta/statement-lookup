@@ -55,8 +55,11 @@ This is a production bundle the extension, ready to be zipped and published to t
 2. Unpack the `.zip` file.
 3. Open `Chrome` and navigate to `chrome://extensions/`
 4. Click `Load unpacked` button.
-    <img src="readme_assets/chrome-extension-loading.png" width="70%"/>
+
+    <img src="readme_assets/chrome-extension-loading.png" width="60%"/>
+
 5. Navigate to and select the unpacked folder.
+    
     <img src="readme_assets/selecting-folder.png" width="60%"/>
 
 ## Credits

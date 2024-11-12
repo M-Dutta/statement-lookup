@@ -16,7 +16,9 @@ permissions:
   contents: write
 
 env:
-  FINAL_PACKAGE_NAME: statement-verifier-chrome-mv3.zip
+  BUILD_DIST_NAME: chrome-mv3-prod
+  FINAL_DIST_NAME: statement-verifier-chrome-mv3
+  CURRENT_TAG: ""
 
 jobs:
   zip-extension:
@@ -30,40 +32,39 @@ jobs:
         with:
           node-version: '20'
 
-      - name: install yarn globally
-        run: npm install --global yarn
-
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           ssh-key: ${{ secrets.DEPLOY_KEY }}
 
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --prefer-offline
 
-      - name: Install package
+      - name: Build and Package
         run: yarn build && yarn package
 
-      - name: Current version
-        run: cat package.json | jq ".version" | tr -d '"'
+#      - name: Bump Version & push to main
+#        run: |
+#          git config user.name github-actions
+#          git config user.email github-actions@no-reply.com
+#          yarn version ${{ github.event.inputs.yarn-version-options }}
+#          git push -u origin main
+#          echo "CURRENT_TAG=v$(cat package.json | jq .version | tr -d '\"')" >> $GITHUB_ENV
+#
+#      - name: Prep Artifacts
+#        run: |
+#          mv build/${{ env.BUILD_DIST_NAME }}.zip build/${{ env.FINAL_DIST_NAME }}-${{ env.CURRENT_TAG }}.zip
+          
 
-      - name: Bump Version, push to main
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@no-reply.com
-          yarn version ${{ github.event.inputs.yarn-version-options }}
-          git push -u origin main
-
-      - name: Show New Tag(s)
-        run: echo v$(cat package.json | jq ".version" | tr -d '"')
-
-      - name: Push New Tag
-        run: |  
-          git push -u origin tag v$(cat package.json | jq ".version" | tr -d '"')
-
-      - name: Archive artifact
+      - name: Save Artifact(s)
         uses: actions/upload-artifact@v4
         with:
-          name: chrome-mv3-prod.zip
-          path: build/chrome-mv3-prod.zip
+          name: ${{ env.FINAL_DIST_NAME }}-${{ env.CURRENT_TAG }}.zip
+          path: build/**.zip
 
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.CURRENT_TAG }}
+          files: build/${{ env.FINAL_DIST_NAME }}-${{ env.CURRENT_TAG }}.zip
+          prerelease: true

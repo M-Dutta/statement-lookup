@@ -35,7 +35,7 @@ export const askGemeni = async (query: string) => {
     const gemeniKey = await loadGemeniKey()
     if (!gemeniKey) {
         return Promise.resolve("Gemeni API key not set. " +
-            "Please open extension settings and set the API key. " +
+            "Please open extension options and set the API key. " +
             "[See Gemeni API doc](https://ai.google.dev/gemini-api/docs/api-key) on how to get the API key."
         )
     }

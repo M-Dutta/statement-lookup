@@ -1,7 +1,7 @@
 {
   "name": "statement-verifier",
   "displayName": "Text verifier",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "license": "MIT",
   "description": "An extension that gives users more context about a statement.",
   "author": "Mishuk Dutta",

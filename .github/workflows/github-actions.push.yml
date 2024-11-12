@@ -1,0 +1,28 @@
+name: Push Action
+run-name: Verifying ${{ github.event.repository.name }} Build 🚀
+on: # TODO FIX ME
+  workflow_dispatch:
+
+jobs:
+
+  build-extension:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup node globally
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: install yarn globally
+        run: npm install --global yarn
+
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build extension
+        run: yarn build
+

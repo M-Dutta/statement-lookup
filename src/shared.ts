@@ -19,7 +19,7 @@ export const saveConfigs = async (config: ExtensionConfig) => {
 }
 
 
-export const loadGemeniKey = async () => {
+export const loadGemeniApiKey = async () => {
     const config = await loadConfigs()
     return config.gemeniKey
 }

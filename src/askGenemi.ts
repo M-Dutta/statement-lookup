@@ -42,7 +42,7 @@ export const askGemeni = async (query: string) => {
 
     const genAI = new GoogleGenerativeAI(gemeniKey);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
-    const conditions = ("Can you verify this fact? Please be sure to double check." +
+    const conditions = ("Can you verify this statement? Please double check." +
         "Keep the response short and give some sources."
         //"Be as detailed as possible and provide sources."
     )

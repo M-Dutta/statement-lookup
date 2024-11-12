@@ -77,8 +77,9 @@ const IndexOptions: React.FC<{}> = () => {
     }
 
     useEffect(() => {
-        loadGemeniApiKey().then((res) => { if (!res) setKeyExists(false) })
-
+        loadGemeniApiKey().then((res) => {
+            if (!res) setKeyExists(false)
+        })
     }, []);
 
     return (

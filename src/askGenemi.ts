@@ -1,5 +1,5 @@
 import { GoogleGenerativeAI } from "@google/generative-ai"
-import { loadGemeniKey } from "~shared";
+import { loadGemeniApiKey } from "./shared";
 
 interface CandidatesEntity {
     content: Content;
@@ -32,7 +32,7 @@ export interface GemeniResponse {
 
 
 export const askGemeni = async (query: string) => {
-    const gemeniKey = await loadGemeniKey()
+    const gemeniKey = await loadGemeniApiKey()
     if (!gemeniKey) {
         return Promise.resolve("Gemeni API key not set. " +
             "Please open extension options and set the API key. " +

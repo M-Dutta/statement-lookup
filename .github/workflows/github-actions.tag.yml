@@ -1,6 +1,18 @@
 name: Tag and Release
 on:
   workflow_dispatch:
+    inputs:
+      yarn-version-options:
+        required: true
+        type: choice
+        description: Yarn Version bump options
+        options:
+        - --major
+        - --minor
+        - --patch
+
+permissions:
+    contents: write
 
 env:
   FINAL_PACKAGE_NAME: statement-verifier-chrome-mv3.zip
@@ -24,8 +36,11 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Install dependencies
-        run: yarn install
-
-      - name: Display version
+      - name: Current version
         run: cat package.json | jq ".version"
+
+      - name: Bump Version, push to main
+        run: |
+          yarn version ${{ github.event.inputs.yarn-version-options }}
+          git push -u origin main
+          git push origin tag $(cat package.json | jq ".version")

@@ -1,6 +1,6 @@
 import { Box, Button, Container, Grid, TextField, Typography } from "@mui/material"
 import { useEffect, useRef, useState } from "react"
-import { loadConfigs, loadGemeniKey, saveConfigs, type ExtensionConfig } from "./shared"
+import { loadConfigs, loadGemeniKey as loadGemeniApiKey, saveConfigs, type ExtensionConfig } from "./shared"
 
 
 
@@ -77,7 +77,8 @@ const IndexOptions: React.FC<{}> = () => {
     }
 
     useEffect(() => {
-        loadGemeniKey()
+        loadGemeniApiKey().then((res) => { if (!res) setKeyExists(false) })
+
     }, []);
 
     return (

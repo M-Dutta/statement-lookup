@@ -1,10 +1,12 @@
 name: Push Action
 run-name: Verifying ${{ github.event.repository.name }} Build 🚀
-on: # TODO FIX ME
-  workflow_dispatch:
+on:
+  push:
+
+env:
+  BUILD_DIST_NAME: chrome-mv3-prod
 
 jobs:
-
   build-extension:
     runs-on: ubuntu-latest
 
@@ -26,3 +28,8 @@ jobs:
       - name: Build extension
         run: yarn build
 
+      - name: Save Artifact(s)
+        uses: actions/upload-artifact@v4
+        with:
+          if: ${{ github.head_ref || github.ref_name }} == "main"
+          path: build/**.zip

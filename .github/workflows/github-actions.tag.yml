@@ -1,10 +1,13 @@
-name: Push Action
-run-name: Verifying ${{ github.event.repository.name }} Build 🚀
-on: [ push ]
+name: Tag and Release
+run-name: Creating tag for ${{ github.event.repository.name }} Build 🚀
+
+on: release
+env:
+  FINAL_PACKAGE_NAME: statement-verifier-chrome-mv3.zip
 
 jobs:
 
-  build-extension:
+  zip-extension:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,12 +25,5 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Build extension
-        run: yarn build
-
-      - name: Archive artifact
-        if: github.ref == 'refs/heads/main'
-        uses: actions/upload-artifact@v4
-        with:
-          name: chrome-mv3-prod
-          path: build/chrome-mv3-prod
+      - name: Build and package Release
+        run: yarn package && mv chrome-mv3-prod.zip ${FINAL_PACKAGE_NAME}

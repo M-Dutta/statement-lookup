@@ -1,6 +1,6 @@
 import { Box, Button, Container, Grid, TextField, Typography } from "@mui/material"
 import { useEffect, useRef, useState } from "react"
-import { loadConfigs, loadGemeniKey as loadGemeniApiKey, saveConfigs, type ExtensionConfig } from "./shared"
+import { loadConfigs, loadGemeniApiKey, saveConfigs, type ExtensionConfig } from "./shared"
 
 
 

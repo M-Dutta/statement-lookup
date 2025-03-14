@@ -40,16 +40,18 @@ jobs:
       - name: Install dependencies
         run: yarn install --prefer-offline
 
-      - name: Build and Package
-        run: yarn build && yarn package
-
-      - name: Bump Version & push to main
+      - name: Bump Version 
         run: |
           git config user.name github-actions
           git config user.email github-actions@no-reply.com
           yarn version ${{ github.event.inputs.yarn-version-options }}
-          git push -u origin main
           echo "CURRENT_TAG=v$(cat package.json | jq .version | tr -d '\"')" >> $GITHUB_ENV
+
+      - name: Build and Package
+        run: yarn build && yarn package
+
+      - name: Push Tag update to main
+        run: git push -u origin main
 
       - name: Prep Artifacts
         run: |

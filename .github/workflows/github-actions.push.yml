@@ -27,9 +27,3 @@ jobs:
 
       - name: Build extension
         run: yarn build
-
-      - name: Save Artifact(s)
-        uses: actions/upload-artifact@v4
-        with:
-          if: ${{ github.head_ref || github.ref_name }} == "main"
-          path: build/**.zip

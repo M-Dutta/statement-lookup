@@ -2,7 +2,7 @@
 import { Box, Container, IconButton } from "@mui/material"
 import { useEffect, useRef, useState } from "react"
 import CloseIcon from '@mui/icons-material/Close';
-import { askGemeni } from "../askGenemi";
+import { askGemini } from "../askGenemi";
 import Markdown from 'markdown-to-jsx';
 import { ActionType, AI_TYPE, type actionMessageStructure } from "../constants";
 
@@ -41,8 +41,8 @@ const QuickFactCheck: React.FC = () => {
         }
 
         switch (message.aiType) {
-            case AI_TYPE.GEMENI:
-                askGemeni(message.selectedText).then(ans => setAnswer(ans))
+            case AI_TYPE.GEMINI:
+                askGemini(message.selectedText).then(ans => setAnswer(ans))
                 break
             default:
                 setAnswer(`#### AI type: ${message.aiType} is not supported yet.`)

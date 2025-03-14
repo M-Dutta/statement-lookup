@@ -73,7 +73,9 @@ const QuickFactCheck: React.FC = () => {
                 border: "1px solid rgb(163 201 255)",
                 background: "rgb(229, 237, 255)",
                 borderRadius: "8px 8px",
-                width: 400,
+                width: 500,
+                maxHeight: 800,
+                overflow:"scroll",
                 // visibility This is important as some sites may inject css that can hide this
                 visibility: 'visible'
             }}>

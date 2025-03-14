@@ -1,5 +1,5 @@
 import { GoogleGenerativeAI } from "@google/generative-ai"
-import { loadGemeniApiKey } from "./shared";
+import { loadConfigs, loadGemeniApiKey } from "./genemiConfigs";
 
 interface CandidatesEntity {
     content: Content;
@@ -31,21 +31,35 @@ export interface GemeniResponse {
 }
 
 
+
 export const askGemeni = async (query: string) => {
-    const gemeniKey = await loadGemeniApiKey()
-    if (!gemeniKey) {
+    const configs = await loadConfigs()
+
+    if (!configs.gemeniKey) {
         return Promise.resolve("Gemeni API key not set. " +
             "Please open extension options and set the API key. " +
             "[See Gemeni API doc](https://ai.google.dev/gemini-api/docs/api-key) on how to get the API key."
         )
     }
 
-    const genAI = new GoogleGenerativeAI(gemeniKey);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
-    const conditions = ("Can you verify this statement? Please double check." +
-        "Keep the response short and give some sources."
-        //"Be as detailed as possible and provide sources."
-    )
+    if (!configs.gemeniModel) {
+        return Promise.resolve("Gemeni Model alias not set" +
+            "Please open extension options and set gemeni model alias; eg -- gemini-2.0-flash" +
+            "See [Gemeni Model(s)](https://ai.google.dev/gemini-api/docs/models/gemini) for all the options"
+        )
+    }
+
+    if (!configs.gemeniPrompt) {
+        return Promise.resolve("Gemeni Prompt alias not set" +
+            "This plugin needs a prompt to send over to gemeni along with the statement." +
+            "Please open extension options and set a prompt. If you are unsure of what to prompt," +
+            `you can just copy paste this (default prompt) --\n{defaultPrompt}`
+        )
+    }
+
+    const genAI = new GoogleGenerativeAI(configs.gemeniKey);
+    const model = genAI.getGenerativeModel({ model: configs.gemeniModel });
+    const conditions = configs.gemeniPrompt
     const wrappedQuery = `"${query}". ${conditions}`
 
     try {

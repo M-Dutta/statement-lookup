@@ -1,4 +1,4 @@
-# Statement Verifier
+# Statement Lookup
 
 This is a plugin that provides more context on statements you read online.
 It interacts with Gemeni to gather informantion about a selected text.
@@ -7,7 +7,7 @@ It interacts with Gemeni to gather informantion about a selected text.
 
 |                            Text Selection                            |                             Answer                              |
 |:--------------------------------------------------------------------:|:---------------------------------------------------------------:|
-| <img src="readme_assets/exmaple-dropdown-option.png" width="100%" /> | <img src="readme_assets/example-screenshot.png" width="100%" /> |
+| <img src="readme_assets/example-dropdown-option.png" width="100%" /> | <img src="readme_assets/example-screenshot.png" width="100%" /> |
 
 ## Compatibility
 
@@ -51,7 +51,7 @@ This is a production bundle the extension, ready to be zipped and published to t
 
 ## Loading the extension
 
-1. Download the `statement-verifier-chrome-mv3-<version>.zip` file.
+1. Download the `statement-lookup-chrome-mv3-<version>.zip` file.
 2. Unpack the `.zip` file.
 3. Open `Chrome` and navigate to `chrome://extensions/`
 4. Click `Load unpacked` button.

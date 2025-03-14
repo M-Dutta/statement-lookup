@@ -3,7 +3,7 @@ import { Box, Button, Container, Divider, makeStyles, Typography } from "@mui/ma
 import { useRef, useState } from "react"
 import Answer, { type AnswerProps } from "~answer"
 import SearchBox from "./searchBox"
-import { TestAiName, TestAnswer } from "~shared";
+import { TestAiName, TestAnswer } from "~genemiConfigs";
 
 
 function Popup() {

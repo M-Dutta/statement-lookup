@@ -17,7 +17,7 @@ permissions:
 
 env:
   BUILD_DIST_NAME: chrome-mv3-prod
-  FINAL_DIST_NAME: statement-verifier-chrome-mv3
+  FINAL_DIST_NAME: statement-lookup-chrome-mv3
   CURRENT_TAG: ""
 
 jobs:
@@ -69,6 +69,6 @@ jobs:
           files: build/${{ env.FINAL_DIST_NAME }}-${{ env.CURRENT_TAG }}.zip
           prerelease: true
           body: |
-            [Installation instructions](https://github.com/M-Dutta/statement-verifier/blob/main/README.md#loading-the-extension)
+            [Installation instructions](https://github.com/M-Dutta/statement-lookup/blob/main/README.md#loading-the-extension)
             
-            **Changelog**: https://github.com/M-Dutta/statement-verifier/commits/${{ env.CURRENT_TAG }}
+            **Changelog**: https://github.com/M-Dutta/statement-lookup/commits/${{ env.CURRENT_TAG }}

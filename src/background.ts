@@ -17,7 +17,7 @@ chrome.contextMenus.onClicked.addListener(async function (info, tab) {
     }
     const actionMessage: actionMessageStructure = {
         actionType: ActionType.VERIFY_TEXT,
-        aiType: AI_TYPE.GEMENI,
+        aiType: AI_TYPE.GEMINI,
         selectedText: info.selectionText
     }
     chrome.tabs.sendMessage(tab.id, actionMessage)

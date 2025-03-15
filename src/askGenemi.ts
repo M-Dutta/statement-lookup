@@ -1,5 +1,5 @@
 import { GoogleGenerativeAI } from "@google/generative-ai"
-import { loadConfigs, loadGemeniApiKey } from "./genemiConfigs";
+import { loadConfigs, loadGeminiApiKey } from "./genemiConfigs";
 
 interface CandidatesEntity {
     content: Content;
@@ -24,7 +24,7 @@ interface UsageMetadata {
     totalTokenCount: number;
 }
 
-export interface GemeniResponse {
+export interface GeminiResponse {
     candidates: (CandidatesEntity)[];
     usageMetadata: UsageMetadata;
     modelVersion: string;
@@ -32,34 +32,34 @@ export interface GemeniResponse {
 
 
 
-export const askGemeni = async (query: string) => {
+export const askGemini = async (query: string) => {
     const configs = await loadConfigs()
 
-    if (!configs.gemeniKey) {
-        return Promise.resolve("Gemeni API key not set. " +
+    if (!configs.geminiKey) {
+        return Promise.resolve("Gemini API key not set. " +
             "Please open extension options and set the API key. " +
-            "[See Gemeni API doc](https://ai.google.dev/gemini-api/docs/api-key) on how to get the API key."
+            "[See Gemini API doc](https://ai.google.dev/gemini-api/docs/api-key) on how to get the API key."
         )
     }
 
-    if (!configs.gemeniModel) {
-        return Promise.resolve("Gemeni Model alias not set" +
-            "Please open extension options and set gemeni model alias; eg -- gemini-2.0-flash" +
-            "See [Gemeni Model(s)](https://ai.google.dev/gemini-api/docs/models/gemini) for all the options"
+    if (!configs.geminiModel) {
+        return Promise.resolve("Gemini Model alias not set" +
+            "Please open extension options and set gemini model alias; eg -- gemini-2.0-flash" +
+            "See [Gemini Model(s)](https://ai.google.dev/gemini-api/docs/models/gemini) for all the options"
         )
     }
 
-    if (!configs.gemeniPrompt) {
-        return Promise.resolve("Gemeni Prompt alias not set" +
-            "This plugin needs a prompt to send over to gemeni along with the statement." +
+    if (!configs.geminiPrompt) {
+        return Promise.resolve("Gemini Prompt alias not set" +
+            "This plugin needs a prompt to send over to gemini along with the statement." +
             "Please open extension options and set a prompt. If you are unsure of what to prompt," +
             `you can just copy paste this (default prompt) --\n{defaultPrompt}`
         )
     }
 
-    const genAI = new GoogleGenerativeAI(configs.gemeniKey);
-    const model = genAI.getGenerativeModel({ model: configs.gemeniModel });
-    const conditions = configs.gemeniPrompt
+    const genAI = new GoogleGenerativeAI(configs.geminiKey);
+    const model = genAI.getGenerativeModel({ model: configs.geminiModel });
+    const conditions = configs.geminiPrompt
     const wrappedQuery = `"${query}". ${conditions}`
 
     try {

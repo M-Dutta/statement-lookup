@@ -1,5 +1,5 @@
 export const AI_TYPE = {
-    GEMENI: "gemeni"
+    GEMINI: "gemini"
 }
 
 export const ActionType = {
@@ -8,6 +8,6 @@ export const ActionType = {
 
 export interface actionMessageStructure {
     actionType: string
-    aiType: typeof AI_TYPE.GEMENI,
+    aiType: typeof AI_TYPE.GEMINI,
     selectedText: string | undefined
 }
